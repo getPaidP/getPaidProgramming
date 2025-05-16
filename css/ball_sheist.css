@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  min-height: 100vh;
+}
+.money, .threed {
+  position: absolute;
+  top: 61px;
+  left: 56px;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0.00001;
+  transition: opacity 0.3s ease;
+  text-decoration: none;
+  color: black;
+}
+.money:hover {
+  opacity: 1;
+  color: red;
+}
+.threed {
+  top: 550px;
+  left: 415px;
+}
+.threed:hover {
+  opacity: 1;
+  color: teal;
+}
+.video-container {
+  width: 400px;
+  z-index: -1;
+  margin: 1rem;
+}
+.video-container.two {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: -2;
+  margin: 0;
+}
+.video-container.three {
+  position: absolute;
+  top: 3rem;
+  left: 3rem;
+  z-index: -3;
+  margin: 0;
+}
+.not-hidden-text {
+  position: absolute;
+  top: 600px;
+  color: transparent;
+  padding: 5rem;
+}
+.not-hidden-text p {
+  margin: 0;
+}
+
+img {
+  pointer-events: none;
+}
+
+/*** Works on common browsers ***/
+::selection {
+    background-color: red;
+    color: #fff;
+}
+
+/*** Mozilla based browsers ***/
+::-moz-selection {
+    background-color: red;
+    color: #fff;
+}
+
+/***For Other Browsers ***/
+::-o-selection {
+    background-color: red;
+    color: #fff;
+}
+
+::-ms-selection {
+    background-color: red;
+    color: #fff;
+}
+
+/*** For Webkit ***/
+::-webkit-selection {
+    background-color: red;
+    color: #fff;
+}

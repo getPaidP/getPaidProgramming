@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  min-height: 100vh;
+  background: url(https://w.wallhaven.cc/full/dp/wallhaven-dp29ko.jpg);
+  background-size: cover;
+  background-position: top;
+  font-family: "Source Code Pro", monospace;
+  position: relative;
+}
+.change-background-pic {
+  padding: 0.5rem 0 0 0;
+}
+.change-background-pic button:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.custom-input {
+  font-family: inherit;
+  font-size: 1em;
+  border-radius: 0.3em;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #eee;
+  padding: 0.5em;
+  margin: 0.5em;
+  border: 0.5px solid gray;
+  backdrop-filter: blur(3px);
+}
+#url-input::placeholder {
+  color: #eee;
+}
+#url-input:focus {
+  outline: none;
+}
+.url-messages {
+  font-size: 0.7em;
+  color: #eee;
+  position: absolute;
+  top: 0;
+  left: 10px;
+}

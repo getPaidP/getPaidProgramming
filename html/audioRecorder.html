@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>stu</title>
+  <link rel="stylesheet" href="../css/customBg.css">
+  <link href="../css/audioRecorder.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="audioData"></div>
+
+  <canvas></canvas>
+  <canvas id="visualizer" height="100" width="300"></canvas>
+
+  <div class="active-device"></div>
+  <div class="audio-devices"></div>
+
+  <label for="canvas-bg-color">bg-color</label>
+  <input type="text" id="canvas-bg-color" class="custom-input" value="#fff">
+
+  <label for="canvas-color">color</label>
+  <input type="text" id="canvas-color" class="custom-input" value="#000">
+
+  <button class="record custom-input">RECORD</button>
+  <button class="stop custom-input">STOP</button>
+  <button class="togglePlayback custom-input">PLAYBACK ON</button>
+
+  <div class="sound-clips"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"
+    integrity="sha512-xT0S/xXvkrfkRXGBPlzZPCAncnMK5c1N7slRkToUbv8Z901aUEuKO84tLy8dWU+3ew4InFEN7TebPaVMy2npZw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="../js/customBg.js"></script>
+  <script src="../js/audioRecorder.js"></script>
+</body>
+
+</html>

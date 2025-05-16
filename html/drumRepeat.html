@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MPC</title>
+    <link rel="stylesheet" href="../css/customBg.css">
+    <link href="../css/drumRepeat.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="main-wrap">
+      <div class="mpc-div">
+        <div class="pad" id="1" data-volume="100">1<audio></audio></div>
+        <div class="pad" id="2" data-volume="100">2<audio></audio></div>
+        <div class="pad" id="3" data-volume="100">3<audio></audio></div>
+        <div class="pad" id="4" data-volume="100">4<audio></audio></div>
+        <div class="pad" id="5" data-volume="100">5<audio></audio></div>
+        <div class="pad" id="6" data-volume="100">6<audio></audio></div>
+        <div class="pad" id="7" data-volume="100">7<audio></audio></div>
+        <div class="pad" id="8" data-volume="100">8<audio></audio></div>
+        <div class="pad" id="9" data-volume="100">9<audio></audio></div>
+        <div class="pad" id="10" data-volume="100">10<audio></audio></div>
+        <div class="pad" id="11" data-volume="100">11<audio></audio></div>
+        <div class="pad" id="12" data-volume="100">12<audio></audio></div>
+        <div class="pad" id="13" data-volume="100">13<audio></audio></div>
+        <div class="pad" id="14" data-volume="100">14<audio></audio></div>
+        <div class="pad" id="15" data-volume="100">15<audio></audio></div>
+        <div class="pad" id="16" data-volume="100">16<audio></audio></div>
+      </div>
+
+      <div class="volumes-div">
+        <div class="master-volume-div">
+          <div>master volume</div>
+          <div class="master-volume-value">50%</div>
+          <input class="master-volume" type="range" min="0" max="100" step="1" value="50">
+        </div>
+        <div class="pad-volume-select-div">
+          <div class="selected-pad">pad:
+            <input class="custom-input" type="number" min="1" max="16" value="1">
+          </div>
+          <div class="selected-pad-value">100%</div>
+          <input class="selected-pad-volume" type="range" min="0" max="100" step="1" value="100">
+        </div>
+      </div>
+
+      <div class="midi-div">
+        <h3>MIDI NOTE</h3>
+        <div class="midi-note"></div>
+        <div class="set-midi-div">
+          <div>set: </div>
+          <div class="container">
+            <label class="switch" for="checkbox">
+              <input type="checkbox" id="checkbox" />
+              <div class="slider round"></div>
+            </label>
+          </div>
+        </div>
+        <div class="pad-midi-div">
+          <div class="assign-midi">Assign-Midi</div>
+          <ul>
+            <li data-index="0">pad: 1  -  midi-note: <input type="number" class="custom-input"></li>
+            <li data-index="1">pad: 2  -  midi-note: <input type="number" class="custom-input"></li>
+            <li data-index="2">pad: 3  -  midi-note: <input type="number" class="custom-input"></li>
+            <li data-index="3">pad: 4  -  midi-note: <input type="number" class="custom-input"></li>
+            <li data-index="4">pad: 5  -  midi-note: <input type="number" class="custom-input"></li>
+            <li data-index="5">pad: 6  -  midi-note: <input type="number" class="custom-input"></li>
+            <li data-index="6">pad: 7  -  midi-note: <input type="number" class="custom-input"></li>
+            <li data-index="7">pad: 8  -  midi-note: <input type="number" class="custom-input"></li>
+            <li data-index="8">pad: 9  -  midi-note: <input type="number" class="custom-input"></li>
+            <li data-index="9">pad: 10  -  midi-note: <input type="number" class="custom-input"></li>
+            <li data-index="10">pad: 11  -  midi-note: <input type="number" class="custom-input"></li>
+            <li data-index="11">pad: 12  -  midi-note: <input type="number" class="custom-input"></li>
+            <li data-index="12">pad: 13  -  midi-note: <input type="number" class="custom-input"></li>
+            <li data-index="13">pad: 14  -  midi-note: <input type="number" class="custom-input"></li>
+            <li data-index="14">pad: 15  -  midi-note: <input type="number" class="custom-input"></li>
+            <li data-index="15">pad: 16  -  midi-note: <input type="number" class="custom-input"></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="samples-div">
+        <h3>ADD SAMPLES</h3>
+        <h3 class="plus">+</h3>
+        <input type="file" multiple id="fileInput" accept="audio/*" style="display: none;">
+        <ul></ul>
+      </div>
+
+    </div>
+
+    <script src="../js/customBg.js"></script>
+    <script src="../js/drumRepeat.js"></script>
+  </body>
+</html>

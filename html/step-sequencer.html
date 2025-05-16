@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>스텝 시퀀서</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+    </style>
+    <link rel="stylesheet" href="../css/customBg.css">
+    <link href="../css/step-sequencer.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="url-messages"></div>
+
+    <div class="main-div">
+      <div class="controls">
+        <div class="bpm-div">
+          BPM:
+          <input class="custom-input" type="number" value="120" min="1" max="999">
+        </div>
+        <div class="play-pause">PLAY</div>
+      </div>
+      <div class="step-blocks">
+        <div class="step-block"></div>
+        <div class="step-block"></div>
+        <div class="step-block"></div>
+        <div class="step-block"></div>
+        <div class="step-block"></div>
+        <div class="step-block"></div>
+        <div class="step-block"></div>
+        <div class="step-block"></div>
+      </div>
+    </div>
+
+    <div class="nodes-div">
+      <div class="basic-synth">
+        <h3>basic-synth</h3>
+        <select id="waveform" class="custom-input">
+            <option value="sine">Sine</option>
+            <option value="square">Square</option>
+            <option value="sawtooth">Sawtooth</option>
+            <option value="triangle">Triangle</option>
+        </select>
+        <label for="frequency">Frequency (Hz):</label>
+        <input class="custom-input" type="number" id="frequency" min="0" max="22000" value="420" step="1">
+
+        <label for="gain">Gain:</label>
+        <input class="custom-input" type="range" id="gain" min="0" max="1" step="0.01" value="0.2">
+        <span id="gainValue">0.2</span>
+
+        <button id="play" class="custom-input">Play</button>
+        <button id="stop" class="custom-input">Stop</button>
+      </div>
+    </div>
+
+    <script src="../js/customBg.js"></script>
+    <script src="../js/step-sequencer.js"></script>
+  </body>
+</html>

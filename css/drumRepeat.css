@@ -1,0 +1,233 @@
+body {
+  overflow-x: hidden;
+}
+
+.main-wrap {
+  display: flex;
+  flex-direction: unset;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.mpc-div {
+  border: 1px solid white;
+  display: inline-grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  padding: 1rem;
+  margin: 1rem;
+  backdrop-filter: blur(3px);
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 1rem;
+}
+
+.pad {
+  border: 1px solid white;
+  color: white;
+  width: 5rem;
+  height: 5rem;
+  margin: 0.3rem;
+}
+.pad.active {
+  background-color: rgba(0,0,0,0.5);
+}
+
+.volumes-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.master-volume-div,
+.pad-volume-select-div {
+  padding: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  backdrop-filter: blur(3px);
+  background-color: rgba(0,0,0,0.2);
+}
+.master-volume,
+.selected-pad-volume {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid white;
+  outline: none;
+  width: 7rem;
+  height: 1.5rem;
+  background: linear-gradient(to right, white 0%, white 50%, transparent 50%, transparent 100%);
+}
+
+.selected-pad-volume {
+  background: linear-gradient(to right, white 0%, white 100%);
+}
+
+.master-volume::-webkit-slider-thumb,
+.selected-pad-volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0;
+  height: 1.5rem;
+  background: white;
+  cursor: pointer;
+  border-radius: 0;
+}
+.master-volume::-moz-range-thumb,
+.selected-pad-volume::-moz-range-thumb {
+  width: 0;
+  height: 1.5rem;
+  background: white;
+  cursor: pointer;
+  border-radius: 0;
+  border: 0;
+}
+
+.midi-div {
+  margin: 0 1rem;
+  padding: 1rem;
+  backdrop-filter: blur(3px);
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 1rem;
+  color: white;
+  text-align: center;
+  height: fit-content;
+}
+.midi-div h3 {
+  padding: 0;
+  margin: 0;
+}
+.midi-note {
+  border: 1px solid white;
+  width: 1rem;
+  height: 1rem;
+  margin: 0.3rem auto;
+}
+.set-midi-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0.5rem 0.5rem 0.5rem;
+}
+.pad-midi-div ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 10rem;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.2);
+}
+.pad-midi-div li {
+  overflow-x: auto;
+}
+.pad-midi-div li:hover {
+  background-color: rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+.pad-midi-div li.selected {
+  back
+}
+.pad-midi-div li input {
+  background: transparent;
+  width: 5ch;
+  margin: 0.2rem;
+  padding: 0.2rem;
+}
+
+
+.samples-div {
+  margin: 0 1rem;
+  padding: 1rem;
+  backdrop-filter: blur(3px);
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 1rem;
+  color: white;
+  text-align: center;
+  height: fit-content;
+}
+.samples-div .plus {
+  margin: 0;
+  padding: 1rem;
+}
+.samples-div .plus:hover, .samples-div .plus.drag-over {
+  background-color: rgba(0,0,0,0.5);
+}
+.samples-div ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.audio-ele {
+  border: 1px solid white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  backdrop-filter: blur(3px);
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 1rem;
+}
+.audio-ele p {
+  margin: 0;
+}
+.audio-ele button {
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+
+/* checkbox slider */
+.switch {
+  display: inline-block;
+  height: 1rem;
+  position: relative;
+  width: 3rem;
+}
+.switch input {
+  display:none;
+}
+.slider {
+  background-color: rgba(0,0,0,0.2);
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+.slider:before {
+  background-color: #fff;
+  transform: translateY(50%);
+  bottom: 50%;
+  content: "";
+  height: 1rem;
+  left: 0;
+  position: absolute;
+  transition: .4s;
+  width: 1rem;
+}
+input:checked + .slider {
+  background-color: rgba(0,0,0,0.5);
+}
+input:checked + .slider:before {
+  transform: translate(-100%, 50%);
+  left: 100%
+}
+.container {
+  display: inline-flex;
+}
+
+@media (max-width: 600px) {
+  .volumes-div {
+    flex-direction: row;
+  }
+}

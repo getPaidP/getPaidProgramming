@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang=" en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MCDONALDS</title>
+
+  <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.168.0/examples/jsm/",
+          "three/examples/jsm/OrbitControls.js": "https://cdn.jsdelivr.net/npm/three@0.168.0/examples/jsm/controls/OrbitControls.js"
+        }
+      }
+    </script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .mouse-centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin: 0;
+    }
+
+    .speed-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <input class="mouse-centered" type="checkbox" />
+  <input type="number" value="3" class="speed-input">
+  <script type="module">
+    import * as THREE from 'three';
+    import {OrbitControls} from 'three/examples/jsm/OrbitControls.js';
+    import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+    import {Box3, BoxHelper} from 'three';
+    import {PointerLockControls} from 'three/addons/controls/PointerLockControls.js';
+
+    // Scene setup
+    const scene = new THREE.Scene();
+
+    // Camera setup (positioned inside the sphere)
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100000);
+    camera.position.set(174, 76, -115); // Place the camera inside the sphere
+    camera.lookAt(0, 0, 0);
+
+    // Renderer setup
+    const renderer = new THREE.WebGLRenderer({antialias: true});
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+
+    const bgSphere1 = new THREE.Mesh(
+      new THREE.SphereGeometry(30, 64, 64),
+      new THREE.MeshBasicMaterial({
+        map: new THREE.TextureLoader().load("../pics/McDonalds-911.jpg"),
+        side: THREE.BackSide
+      })
+    );
+
+    bgSphere1.scale.set(9, 9, 9);
+    bgSphere1.rotation.set(0, 5, 0);
+    scene.add(bgSphere1);
+
+    const bgSphere2 = new THREE.Mesh(
+      new THREE.SphereGeometry(30, 64, 64),
+      new THREE.MeshBasicMaterial({
+        map: new THREE.TextureLoader().load("../pics/mcdonalds90s.jpg"),
+        side: THREE.BackSide
+      })
+    );
+
+    bgSphere2.scale.set(25, 25, 25);
+    bgSphere2.rotation.set(0, 5, 0);
+    scene.add(bgSphere2);
+
+    const beefTexture = new THREE.TextureLoader().load("../pics/gross_beef.jpg");
+    beefTexture.wrapS = THREE.RepeatWrapping;
+    beefTexture.wrapT = THREE.RepeatWrapping;
+    beefTexture.repeat.set(100, 100);
+    const bgSphere3 = new THREE.Mesh(
+      new THREE.SphereGeometry(30, 64, 64),
+      new THREE.MeshBasicMaterial({
+        map: beefTexture,
+        side: THREE.BackSide
+      })
+    );
+
+    bgSphere3.scale.set(150, 150, 150);
+    bgSphere3.rotation.set(0, 5, 0);
+    scene.add(bgSphere3);
+
+    const ambientLight = new THREE.AmbientLight("#fff", 3)
+    scene.add(ambientLight)
+
+
+    let burger
+    let burgerLight
+    const loader = new GLTFLoader();
+    loader.load("../3d_models/who_wants_a_creepy_burger.glb", (glb) => {
+      burger = glb.scene
+      burger.scale.set(25, 25, 25)
+      burger.position.set(115, 15, 100)
+      //burger.rotation.x = Math.PI / 2;  // Rotate 45 degrees around the X axis
+      burger.rotation.y = 3.5;  // Rotate 90 degrees around the Y axis
+      //burger.rotation.z = Math.PI / 2;  // Rotate 30 degrees around the Z axis1
+
+      /*
+      const box = new Box3().setFromObject(burger);
+      const boxHelper = new BoxHelper(burger, 0xffff00);
+      scene.add(boxHelper);
+      */
+
+      scene.add(burger)
+
+    }, undefined, function (error) {
+      console.error(error)
+    })
+
+    let mcplate;
+    loader.load("../3d_models/mcdonalds_plate.glb", (glb) => {
+      mcplate = glb.scene
+      mcplate.scale.set(5, 5, 5)
+      mcplate.position.set(-200, 5, 100)
+
+      scene.add(mcplate)
+
+    }, undefined, function (error) {
+      console.error(error)
+    })
+
+    let grimaceShake;
+    loader.load("../3d_models/grimace_birthday_shake_parody.glb", (glb) => {
+      grimaceShake = glb.scene
+      grimaceShake.scale.set(70, 70, 70)
+      grimaceShake.position.set(-20, 18, -80)
+
+      scene.add(grimaceShake)
+
+    }, undefined, function (error) {
+      console.error(error)
+    })
+
+    let doubleBurg;
+    loader.load("../3d_models/mcdonalds_double_cheeseburger.glb", (glb) => {
+      doubleBurg = glb.scene
+      doubleBurg.scale.set(45, 45, 45)
+      doubleBurg.position.set(0, 0, 0)
+
+      scene.add(doubleBurg)
+
+    }, undefined, function (error) {
+      console.error(error)
+    })
+
+    let mcSandwich;
+    loader.load("../3d_models/mcdonalds_sandwich.glb", (glb) => {
+      mcSandwich = glb.scene
+      mcSandwich.scale.set(0.25, 0.25, 0.25)
+      mcSandwich.position.set(10, 20, -45)
+
+      scene.add(mcSandwich)
+
+    }, undefined, function (error) {
+      console.error(error)
+    })
+
+    let mcSandwichLarge;
+    loader.load("../3d_models/mcdonalds_sandwich.glb", (glb) => {
+      mcSandwichLarge = glb.scene
+      mcSandwichLarge.scale.set(150, 150, 150)
+      mcSandwichLarge.position.set(0, 0, 0)
+
+      scene.add(mcSandwichLarge)
+
+    }, undefined, function (error) {
+      console.error(error)
+    })
+
+    let mcdonaldsAtNight
+    loader.load("../3d_models/mcdonalds_at_night.glb", (glb) => {
+      mcdonaldsAtNight = glb.scene
+      mcdonaldsAtNight.scale.set(45, 45, 45)
+      mcdonaldsAtNight.position.set(0, -100, 0)
+      scene.add(mcdonaldsAtNight)
+
+    }, undefined, function (error) {
+      console.error(error)
+    })
+
+    let mcBuilding;
+    loader.load("../3d_models/mcdonalds_building.glb", (glb) => {
+      mcBuilding = glb.scene
+      mcBuilding.scale.set(50, 50, 50)
+      mcBuilding.position.set(-1800, -500, 0)
+
+      scene.add(mcBuilding)
+
+    }, undefined, function (error) {
+      console.error(error)
+    })
+
+    // Add OrbitControls
+    /*
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.update();
+    controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+    controls.dampingFactor = 0.25;
+    controls.enableZoom = true;
+    */
+
+    const gridHelper = new THREE.GridHelper(200, 50)
+    scene.add(gridHelper)
+
+
+    // controls
+    const controls = new PointerLockControls(camera, document.body)
+    controls.connect()
+    const mouseCenteredCheck = document.querySelector('.mouse-centered')
+
+    const speedInput = document.querySelector('.speed-input');
+    let speed = 3;
+    speedInput.addEventListener('change', function () {
+      speed = Number(this.value);
+    })
+
+    const keys = []
+    mouseCenteredCheck.addEventListener('change', function () {
+      if (!controls.isLocked) {
+        controls.lock()
+      }
+    }, false)
+    controls.addEventListener('lock', function () {
+      mouseCenteredCheck.style.display = 'none'
+    })
+    controls.addEventListener('unlock', function () {
+      mouseCenteredCheck.checked = false
+      mouseCenteredCheck.style.display = 'block'
+    })
+    document.addEventListener('keydown', e => {
+      if (!keys.includes(e.code)) {
+        keys.push(e.code)
+      }
+    })
+    document.addEventListener('keyup', e => {
+      if (keys.includes(e.code)) {
+        keys.splice(keys.indexOf(e.code), 1)
+      }
+    })
+    function updatePos() {
+      if (keys.includes("KeyW")) {
+        controls.moveForward(speed);
+      }
+      if (keys.includes("KeyS")) {
+        controls.moveForward(-speed);
+      }
+      if (keys.includes("KeyD")) {
+        controls.moveRight(speed);
+      }
+      if (keys.includes("KeyA")) {
+        controls.moveRight(-speed);
+      }
+      if (keys.includes("Space")) {
+        camera.position.y += speed / 2; // Move up
+      }
+      if (keys.includes("ShiftLeft")) {
+        camera.position.y -= speed / 2; // Move down
+      }
+    }
+
+
+
+    // Animation loop
+    function animate() {
+      requestAnimationFrame(animate);
+      updatePos()
+
+      // Optionally rotate the sphere for some animation
+      //sphere.rotation.y += 0.001;
+      //burger.rotation.y += 0.01
+
+      //console.log(camera.position.x, camera.position.y, camera.position.z)
+
+      renderer.render(scene, camera);
+    }
+
+    // Handle window resizing
+    window.addEventListener('resize', () => {
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+    });
+
+    animate();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+body {
+  margin: 0;
+  padding: 0;
+  color: white;
+  position: relative;
+  overflow-x: hidden;
+}
+h1 {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+h1:hover {
+  color: red;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+.video-container {
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /* Places the video behind the content */
+}
+#background-video {
+  width: 100%;
+}
+.money {
+  color: inherit;
+  text-decoration: none;
+  font-size: 5rem;
+}
+home-div {
+  position: relative;
+  z-index: 1;
+}
+
+pre {
+  margin: 0;
+}
+.ascii-1 {
+  white-space: pre;
+  color: #00ff00;
+  font-weight: 800;
+
+}
+.ascii-2 {
+  border: 1px solid black;
+}
+
+.footer-ad {
+  background-color: #ff0000;
+  white-space: pre;
+  color: #ffda08;
+  font-weight: 900;
+  font-size: 8px;
+  font-family: monospace;
+}
+.footer-ad pre {
+}
+
+
+#map {
+  height: 400px;
+  width: 100%;
+}

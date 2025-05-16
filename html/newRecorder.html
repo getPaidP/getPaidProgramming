@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Audio Recorder</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        background-color: #1295ff;
+        color: #111;
+      }
+
+      canvas {
+          border: 1px solid #000;
+          width: 300px;
+          height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+
+  <a href="./audioRecorder.html" style="color: transparent">
+    <img src="https://i1.sndcdn.com/artworks-000246259839-n8dn19-t500x500.jpg" alt="guap" style="width:500px; height: 100px;">
+  </a>
+    <h1>Audio Input Information</h1>
+    <div id="deviceInfo">Loading...</div>
+    <canvas id="visualizer" height="100" width="300"></canvas>
+
+    <h1>Audio Recorder</h1>
+
+    <button id="start">Start Recording</button>
+    <button id="stop" disabled>Stop Recording</button>
+    <div id="recordings"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js" integrity="sha512-xT0S/xXvkrfkRXGBPlzZPCAncnMK5c1N7slRkToUbv8Z901aUEuKO84tLy8dWU+3ew4InFEN7TebPaVMy2npZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../js/newRecorder.js"></script>
+  </body>
+</html>
+

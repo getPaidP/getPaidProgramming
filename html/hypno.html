@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ᓚᘏᗢ</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background: black;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+     <canvas id="hypnoCanvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById('hypnoCanvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let angle = 0;
+    let radius = 5;
+
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    const colorArr = [ "red", "purple", "green" ];
+    let colorIndex = 0;
+
+    setInterval(() => {
+      colorIndex = (colorIndex + 1) % colorArr.length;
+    }, 500);
+
+    function drawHypno() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+
+      ctx.strokeStyle = colorArr[colorIndex]; // Black lines
+      ctx.lineWidth = 5;
+
+      for (let i = 0; i < 200; i++) {
+        ctx.beginPath();
+        const x = centerX + Math.cos(angle + i * 0.2) * radius * i;
+        const y = centerY + Math.sin(angle + i * 0.2) * radius * i;
+        ctx.arc(x, y, 5, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      angle -= 0.025;  // Control the speed of rotation
+
+      requestAnimationFrame(drawHypno);
+    }
+
+    drawHypno();
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+  </body>
+</html>
