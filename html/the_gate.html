@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>THE GATE</title>
+    <style>
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* Allows clicks to pass through */
+      box-shadow: inset 0 0 300px 60px rgba(255, 189, 189, 0.8);
+      z-index: 9999; /* Ensure it stays on top */
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      display: flex;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+    .video-container {
+      width: 100%;
+      max-height: 100vh;
+    }
+
+    /* bg */
+    .video-container-bg-div {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+    }
+    .video-container-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    </style>
+  </head>
+  <body>
+      <div class="video-container-bg-div">
+        <video class="video-container-bg" autoplay muted loop class="gate-vid">
+          <source src="../pics/the_gate_red.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+      </div>
+
+      <video class="video-container" autoplay muted loop class="gate-vid">
+        <source src="../pics/the_gate.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+  </body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("hi");
+    })
+  </script>
+</html>
