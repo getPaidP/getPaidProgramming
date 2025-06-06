@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I Am</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+      /* Light background for contrast */
+      font-family: 'Times New Roman', Times, serif;
+      color: rgb(122, 51, 51);
+      background-color: #334757;
+    }
+
+    .abra-vid {
+      width: 100%;
+      height: auto;
+      max-height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      /* Ensure video is behind content */
+    }
+  </style>
+</head>
+
+<body>
+  <video autoplay muted loop class="abra-vid">
+    <source src="../pics/abra.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <h1>Nothing in all creation is so like God as stillness</h1>
+
+  <h2 class="floater" style="border: 3px solid #563390; backdrop-filter: blur(5px); width: 300px;">
+    You used to walk in these ways, in the life you once lived. 8 But now you must also rid yourselves of all such
+    things as
+    these: anger, rage, malice, slander, and filthy language from your lips. 9 Do not lie to each other, since you have
+    taken off your old self with its practices10 and have put on the new self, which is being renewed in knowledge in
+    the
+    image of its Creator. 11 Here there is no Gentile or Jew, circumcised or uncircumcised, barbarian, Scythian, slave
+    or
+    free, but Christ is all, and is in all.
+  </h2>
+
+  <script>
+    // Make .floater bounce around the viewport
+    const floater = document.querySelector('.floater');
+    floater.style.position = 'fixed';
+
+    // Initial position and velocity
+    let x = Math.random() * (window.innerWidth - floater.offsetWidth);
+    let y = Math.random() * (window.innerHeight - floater.offsetHeight);
+    let vx = (Math.random() * 2 + 1) * (Math.random() < 0.5 ? 1 : -1);
+    let vy = (Math.random() * 2 + 1) * (Math.random() < 0.5 ? 1 : -1);
+
+    function moveFloater() {
+      x += vx;
+      y += vy;
+
+      // Bounce off left/right
+      if (x <= 0) {
+        x = 0;
+        vx *= -1;
+      } else if (x + floater.offsetWidth >= window.innerWidth) {
+        x = window.innerWidth - floater.offsetWidth;
+        vx *= -1;
+      }
+
+      // Bounce off top/bottom
+      if (y <= 0) {
+        y = 0;
+        vy *= -1;
+      } else if (y + floater.offsetHeight >= window.innerHeight) {
+        y = window.innerHeight - floater.offsetHeight;
+        vy *= -1;
+      }
+
+      floater.style.left = x + 'px';
+      floater.style.top = y + 'px';
+
+      requestAnimationFrame(moveFloater);
+    }
+
+    moveFloater();
+
+    // Optional: Recalculate bounds on resize
+    window.addEventListener('resize', () => {
+      x = Math.min(x, window.innerWidth - floater.offsetWidth);
+      y = Math.min(y, window.innerHeight - floater.offsetHeight);
+    });
+  </script>
+
+</body>
+
+</html>

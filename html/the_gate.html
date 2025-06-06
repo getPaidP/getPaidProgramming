@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>THE GATE</title>
-    <style>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>THE GATE</title>
+  <style>
     body::before {
       content: "";
       position: fixed;
@@ -12,10 +13,13 @@
       left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none; /* Allows clicks to pass through */
-      box-shadow: inset 0 0 300px 60px rgba(255, 189, 189, 0.8);
-      z-index: 9999; /* Ensure it stays on top */
+      pointer-events: none;
+      /* Allows clicks to pass through */
+      box-shadow: inset 0 0 300px 60px rgba(255, 189, 189, 0.6);
+      z-index: 9999;
+      /* Ensure it stays on top */
     }
+
     body {
       margin: 0;
       padding: 0;
@@ -24,11 +28,99 @@
       overflow-x: hidden;
       position: relative;
       min-height: 100vh;
+      opacity: 0;
+      /* Start invisible */
+      transition: opacity 20s;
+      /* 20-second fade */
     }
-    .video-container {
+
+    app {
       width: 100%;
-      max-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+
+    /* Ensure the body and parent containers take up full height */
+    body,
+    html {
+      height: 100%;
+    }
+
+    .menu-cont {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      height: 100vh;
+      width: 100%;
+    }
+
+    .video-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: fit-content;
+      height: auto;
+    }
+
+    .video-container video {
+      width: 100%;
+      /* Maintain aspect ratio */
+      height: auto;
+      /* Adjust height dynamically */
+      max-width: 100%;
+      /* Prevent overflow */
+      max-height: 100vh;
+      /* Prevent overflow */
+    }
+
+    .video-container div {
+      z-index: 3;
+      position: absolute;
+    }
+
+    .links {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .links div:hover {
+      border: 2px solid red;
+      cursor: pointer;
+    }
+
+    /* Link positions */
+    .i-am {
+      top: 3%;
+      left: 21%;
+      width: 41%;
+      height: 14%;
+    }
+
+    .neither {
+      top: 19%;
+      right: 0;
+      width: 9%;
+      height: 48%;
+    }
+
+    .the {
+      bottom: 3%;
+      left: 4%;
+      height: 10%;
+      width: 16%;
+    }
+
+    .gate {
+      bottom: 0;
+      left: 31%;
+      height: 18%;
+      width: 45%;
+    }
+
 
     /* bg */
     .video-container-bg-div {
@@ -39,30 +131,82 @@
       bottom: 0;
       z-index: -1;
     }
+
     .video-container-bg {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-    </style>
-  </head>
-  <body>
-      <div class="video-container-bg-div">
-        <video class="video-container-bg" autoplay muted loop class="gate-vid">
-          <source src="../pics/the_gate_red.mp4" type="video/mp4">
+  </style>
+</head>
+
+<body>
+  <div class="video-container-bg-div">
+    <video class="video-container-bg" autoplay muted loop class="gate-vid">
+      <source src="../pics/the_gate_red.mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+  </div>
+
+  <app>
+    <div class="menu-cont">
+      <div class="video-container">
+        <video autoplay muted loop class="gate-vid">
+          <source src="../pics/the_gate.mp4" type="video/mp4">
           Your browser does not support HTML5 video.
         </video>
+        <div class="links">
+          <a href="i-am.html">
+            <div class="i-am"></div>
+          </a>
+          <a href="neither.html">
+            <div class="neither"></div>
+          </a>
+          <a href="the.html">
+            <div class="the"></div>
+          </a>
+          <a href="gate.html">
+            <div class="gate"></div>
+          </a>
+        </div>
       </div>
+    </div>
 
-      <video class="video-container" autoplay muted loop class="gate-vid">
-        <source src="../pics/the_gate.mp4" type="video/mp4">
-        Your browser does not support HTML5 video.
-      </video>
-  </body>
+  </app>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      console.log("hi");
-    })
-  </script>
+  <audio id="bg-audio" loop>
+    <source src="../music/the_gate_open.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</body>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+
+    const audio = document.querySelector("#bg-audio");
+    audio.muted = true;
+
+    const links = document.querySelector('.links');
+    links.style.display = 'none';
+
+
+    document.body.addEventListener('click', () => {
+      audio.muted = false;
+      document.body.style.opacity = '1';
+      audio.play().then(() => {
+        console.log("audio playing");
+      });
+
+      setTimeout(() => {
+        links.style.display = 'block';
+      }, 10000);
+
+    }, { once: true });
+
+    // check if already visited then dont play audio but show a button tom play it
+    // also remove fade in transition
+
+  })
+</script>
+
 </html>
